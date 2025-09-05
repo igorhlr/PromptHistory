@@ -120,42 +120,6 @@
             android:text="Público"
             android:layout_marginBottom="20dp" />
 
-        <!-- Botões -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <Button
-                android:id="@+id/btnCancelar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cancelar"
-                android:layout_marginEnd="4dp"
-                android:backgroundTint="#666666" />
-
-            <Button
-                android:id="@+id/btnLimpar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Limpar"
-                android:layout_marginHorizontal="4dp"
-                android:backgroundTint="#FF9800" />
-
-            <Button
-                android:id="@+id/btnSalvar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Salvar"
-                android:layout_marginStart="4dp"
-                android:backgroundTint="#4CAF50" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
 </ScrollView>
