@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Logo UTFPR -->
+        <ImageView
+            android:id="@+id/ivLogoUtfpr"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="Logo UTFPR"
+            android:src="@drawable/logo_utfpr"
+            android:scaleType="centerInside" />
+
+        <!-- Nome da Universidade -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Universidade Tecnológica Federal do Paraná"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginVertical="20dp" />
+
+        <!-- Informações do Desenvolvedor -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desenvolvedor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_700"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Nome do Aluno -->
+        <TextView
+            android:id="@+id/tvNomeAluno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="👤 Igor Henrique Lima Rozalem"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Curso -->
+        <TextView
+            android:id="@+id/tvCurso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎓 Curso: Especialização em JAVA - Módulo Android"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- E-mail -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📧 E-mail: igorrozalem@utfpr.edu.br"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:autoLink="email" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginVertical="20dp" />
+
+        <!-- Descrição do App -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sobre o PromptLog"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_700"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvDescricaoApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📝 PromptLog - Aplicativo Pessoal Offline\n\nO PromptLog é um aplicativo pessoal e offline criado para registrar e consultar prompts utilizados por usuários em interações com modelos de linguagem baseados em inteligência artificial (como ChatGPT, Claude, etc.).\n\n🎯 Objetivo Principal:\nPermitir que o usuário salve seus prompts mais úteis e as respectivas respostas, mesmo quando estiver longe do computador e sem acesso à internet.\n\n✨ Funcionalidades:\n• Cadastro de prompts personalizados\n• Armazenamento offline completo\n• Categorização por temas\n• Sistema de prioridades\n• Marcação de favoritos\n• Organização com tags\n• Interface intuitiva e amigável\n• Acesso rápido aos prompts salvos\n\nVersão: 1.0.0\nDesenvolvido como projeto acadêmico para a disciplina de Frameworks Android"
+            android:textSize="14sp"
+            android:lineSpacingMultiplier="1.2"
+            android:padding="8dp"
+            android:background="#F5F5F5"
+            android:textAlignment="textStart" />
+
+        <!-- Footer com versão -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2025 UTFPR - Todos os direitos reservados"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>

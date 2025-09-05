@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Arrays para o spinner de categorias na tela de cadastro -->
+    <string-array name="categorias_array">
+        <item>Programação</item>
+        <item>Escrita</item>
+        <item>Análise</item>
+        <item>Criativo</item>
+        <item>Outros</item>
+    </string-array>
+    
+    <!-- Arrays para dados mockados da Entrega 2 -->
+    <!-- Textos dos prompts -->
+    <string-array name="prompt_textos">
+        <item>Crie uma função em Python que calcule o fatorial de um número usando recursão. Inclua tratamento de erros para números negativos e adicione comentários explicativos em português.</item>
+        <item>Escreva um haiku sobre programação que capture a essência do debugging. Use metáforas da natureza e mantenha o formato tradicional 5-7-5 sílabas.</item>
+        <item>Analise os prós e contras de usar microserviços versus arquitetura monolítica para um e-commerce de médio porte. Considere aspectos de escalabilidade, manutenção e custos.</item>
+        <item>Crie um logo minimalista para uma startup de IA chamada "NeuralFlow". Use apenas formas geométricas e duas cores. Descreva o conceito e significado.</item>
+        <item>Explique o conceito de Machine Learning para uma criança de 10 anos usando analogias do dia a dia. Mantenha a explicação em no máximo 3 parágrafos.</item>
+        <item>Desenvolva um algoritmo de ordenação bubble sort otimizado em Java. Implemente early termination e explique a complexidade temporal no melhor e pior caso.</item>
+        <item>Escreva um email profissional solicitando aumento de salário. Inclua suas conquistas dos últimos 6 meses e use tom assertivo mas respeitoso.</item>
+        <item>Crie um plano de estudos de 30 dias para aprender React do zero. Divida por semanas com objetivos específicos e projetos práticos para cada fase.</item>
+        <item>Gere 5 nomes criativos para um aplicativo de meditação focado em programadores. Cada nome deve ter justificativa e verificação de disponibilidade de domínio.</item>
+        <item>Traduza o seguinte código Python para JavaScript mantendo a mesma lógica: def fibonacci(n): return n if n &lt;= 1 else fibonacci(n-1) + fibonacci(n-2)</item>
+    </string-array>
+    
+    <!-- Categorias dos prompts (deve ter mesmo tamanho que prompt_textos) -->
+    <string-array name="prompt_categorias">
+        <item>Programação</item>
+        <item>Criativo</item>
+        <item>Análise</item>
+        <item>Criativo</item>
+        <item>Escrita</item>
+        <item>Programação</item>
+        <item>Escrita</item>
+        <item>Análise</item>
+        <item>Criativo</item>
+        <item>Programação</item>
+    </string-array>
+    
+    <!-- Datas dos prompts -->
+    <string-array name="prompt_datas">
+        <item>15/03/2024</item>
+        <item>14/03/2024</item>
+        <item>13/03/2024</item>
+        <item>12/03/2024</item>
+        <item>11/03/2024</item>
+        <item>10/03/2024</item>
+        <item>09/03/2024</item>
+        <item>08/03/2024</item>
+        <item>07/03/2024</item>
+        <item>06/03/2024</item>
+    </string-array>
+    
+    <!-- Prioridades dos prompts -->
+    <string-array name="prompt_prioridades">
+        <item>Alta</item>
+        <item>Baixa</item>
+        <item>Alta</item>
+        <item>Média</item>
+        <item>Baixa</item>
+        <item>Média</item>
+        <item>Alta</item>
+        <item>Alta</item>
+        <item>Média</item>
+        <item>Baixa</item>
+    </string-array>
+    
+    <!-- Favoritos (true/false como string) -->
+    <string-array name="prompt_favoritos">
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </string-array>
+    
+    <!-- Tags dos prompts (separadas por vírgula) -->
+    <string-array name="prompt_tags">
+        <item>python, recursão, algoritmo, função</item>
+        <item>poesia, japonês, debugging, criatividade</item>
+        <item>arquitetura, software, decisão, análise técnica</item>
+        <item>design, logo, startup, IA, minimalismo</item>
+        <item>educação, ML, explicação simples, analogias</item>
+        <item>java, algoritmo, otimização, ordenação</item>
+        <item>comunicação, carreira, negociação, profissional</item>
+        <item>react, frontend, javascript, roadmap, estudo</item>
+        <item>naming, app, mobile, criatividade, brainstorm</item>
+        <item>conversão, código, python, javascript, fibonacci</item>
+    </string-array>
+</resources>

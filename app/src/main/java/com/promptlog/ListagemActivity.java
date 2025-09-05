@@ -1,0 +1,352 @@
+package com.promptlog;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.promptlog.adapter.PromptAdapter;
+import com.promptlog.model.Prompt;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * Activity principal da Entrega 4
+ * Exibe lista de prompts cadastrados dinamicamente
+ * Implementa menu de opções e menu de ação contextual (CAB)
+ */
+public class ListagemActivity extends AppCompatActivity {
+    
+    // Componentes da UI
+    private ListView listViewPrompts;
+    private TextView tvListaVazia;
+    
+    // Dados
+    private ArrayList<Prompt> listaPrompts;
+    private PromptAdapter adapter;
+    
+    // Launcher para resultado da Activity de Cadastro
+    private ActivityResultLauncher<Intent> cadastroLauncher;
+    private ActivityResultLauncher<Intent> edicaoLauncher;
+    
+    // ActionMode para menu contextual
+    private ActionMode actionMode;
+    private int posicaoSelecionada = -1;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_listagem);
+        
+        // Título da activity
+        setTitle("📝 PromptLog - Meus Prompts");
+        
+        // Inicializar componentes
+        inicializarComponentes();
+        
+        // Configurar launcher para resultado
+        configurarLauncher();
+        
+        // Inicializar lista vazia (não carrega mais de resources)
+        listaPrompts = new ArrayList<>();
+        
+        // Configurar adapter customizado
+        adapter = new PromptAdapter(this, listaPrompts);
+        listViewPrompts.setAdapter(adapter);
+        
+        // Configurar listeners
+        configurarClickListeners();
+        
+        // Verificar se lista está vazia
+        verificarListaVazia();
+    }
+    
+    /**
+     * Inicializa todos os componentes da UI
+     */
+    private void inicializarComponentes() {
+        listViewPrompts = findViewById(R.id.listViewPrompts);
+        tvListaVazia = findViewById(R.id.tvListaVazia);
+    }
+    
+    /**
+     * Configura o launcher para receber resultado da Activity de Cadastro
+     */
+    private void configurarLauncher() {
+        // Launcher para adicionar novo prompt
+        cadastroLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    // Verificar se o resultado é OK
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Intent data = result.getData();
+                        
+                        // Extrair dados do Intent
+                        String texto = data.getStringExtra("texto");
+                        String categoria = data.getStringExtra("categoria");
+                        String prioridade = data.getStringExtra("prioridade");
+                        boolean favorito = data.getBooleanExtra("favorito", false);
+                        String tags = data.getStringExtra("tags");
+                        
+                        // Gerar data atual
+                        String dataAtual = new SimpleDateFormat("dd/MM/yyyy", 
+                            Locale.getDefault()).format(new Date());
+                        
+                        // Criar novo objeto Prompt
+                        int novoId = listaPrompts.size() + 1;
+                        Prompt novoPrompt = new Prompt(
+                            novoId,
+                            texto,
+                            categoria,
+                            dataAtual,
+                            prioridade,
+                            favorito,
+                            tags
+                        );
+                        
+                        // Adicionar à lista
+                        listaPrompts.add(novoPrompt);
+                        
+                        // Notificar adapter da mudança
+                        adapter.notifyDataSetChanged();
+                        
+                        // Verificar se lista não está mais vazia
+                        verificarListaVazia();
+                        
+                        // Mostrar confirmação
+                        Toast.makeText(ListagemActivity.this,
+                            "✅ Prompt adicionado com sucesso!",
+                            Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        );
+        
+        // Launcher para editar prompt existente
+        edicaoLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Intent data = result.getData();
+                        
+                        // Obter posição e ID originais
+                        int position = data.getIntExtra("position", -1);
+                        int id = data.getIntExtra("id", -1);
+                        
+                        if (position >= 0 && position < listaPrompts.size()) {
+                            // Atualizar prompt existente
+                            Prompt promptExistente = listaPrompts.get(position);
+                            promptExistente.setTexto(data.getStringExtra("texto"));
+                            promptExistente.setCategoria(data.getStringExtra("categoria"));
+                            promptExistente.setPrioridade(data.getStringExtra("prioridade"));
+                            promptExistente.setFavorito(data.getBooleanExtra("favorito", false));
+                            promptExistente.setTags(data.getStringExtra("tags"));
+                            
+                            // Notificar adapter
+                            adapter.notifyDataSetChanged();
+                            
+                            Toast.makeText(ListagemActivity.this,
+                                "✅ Prompt editado com sucesso!",
+                                Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        );
+    }
+    
+    /**
+     * Configura todos os listeners de click
+     */
+    private void configurarClickListeners() {
+        // Click em item da lista
+        listViewPrompts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Obtém o prompt clicado
+                Prompt prompt = listaPrompts.get(position);
+                
+                // Pega os primeiros 60 caracteres do texto para identificação
+                String textoPrompt = prompt.getTexto();
+                String textoResumido = textoPrompt.length() > 60 ? 
+                    textoPrompt.substring(0, 57) + "..." : textoPrompt;
+                
+                // Mensagem identificando exatamente qual item foi clicado
+                String mensagem = String.format(
+                    "📌 VOCÊ CLICOU NO ITEM %d:\n\n" +
+                    "\"%s\"\n\n" +
+                    "📁 %s | ⚡ %s | 📅 %s",
+                    prompt.getId(),
+                    textoResumido,
+                    prompt.getCategoria(),
+                    prompt.getPrioridade(),
+                    prompt.getData()
+                );
+                
+                // Mostra Toast com duração longa
+                Toast.makeText(ListagemActivity.this, 
+                              mensagem, 
+                              Toast.LENGTH_LONG).show();
+            }
+        });
+        
+        // Long click para ativar menu de ação contextual (CAB)
+        listViewPrompts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                posicaoSelecionada = position;
+                
+                // Destacar item selecionado
+                view.setSelected(true);
+                
+                // Iniciar modo de ação contextual
+                if (actionMode == null) {
+                    actionMode = startActionMode(actionModeCallback);
+                }
+                
+                return true;
+            }
+        });
+    }
+    
+    /**
+     * Verifica se a lista está vazia e mostra/esconde mensagem apropriada
+     */
+    private void verificarListaVazia() {
+        if (listaPrompts.isEmpty()) {
+            tvListaVazia.setVisibility(View.VISIBLE);
+            listViewPrompts.setVisibility(View.GONE);
+        } else {
+            tvListaVazia.setVisibility(View.GONE);
+            listViewPrompts.setVisibility(View.VISIBLE);
+        }
+    }
+    
+    /**
+     * Cria o menu de opções da Activity
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_listagem, menu);
+        return true;
+    }
+    
+    /**
+     * Trata seleção de item do menu de opções
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        
+        if (id == R.id.action_adicionar) {
+            // Abrir tela de cadastro
+            Intent intent = new Intent(ListagemActivity.this, CadastroPromptActivity.class);
+            cadastroLauncher.launch(intent);
+            return true;
+        } else if (id == R.id.action_sobre) {
+            // Abrir tela sobre
+            Intent intent = new Intent(ListagemActivity.this, SobreActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        
+        return super.onOptionsItemSelected(item);
+    }
+    
+    /**
+     * Callback para o modo de ação contextual (CAB)
+     */
+    private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            // Inflar menu contextual
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.menu_contextual, menu);
+            
+            // Atualizar título
+            mode.setTitle("Selecione a ação");
+            
+            return true;
+        }
+        
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+        
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            int id = item.getItemId();
+            
+            if (id == R.id.action_editar) {
+                // Editar prompt selecionado
+                if (posicaoSelecionada >= 0) {
+                    Prompt prompt = listaPrompts.get(posicaoSelecionada);
+                    
+                    Intent intent = new Intent(ListagemActivity.this, CadastroPromptActivity.class);
+                    intent.putExtra("modo_edicao", true);
+                    intent.putExtra("id", prompt.getId());
+                    intent.putExtra("position", posicaoSelecionada);
+                    intent.putExtra("texto", prompt.getTexto());
+                    intent.putExtra("categoria", prompt.getCategoria());
+                    intent.putExtra("prioridade", prompt.getPrioridade());
+                    intent.putExtra("favorito", prompt.isFavorito());
+                    intent.putExtra("tags", prompt.getTags());
+                    
+                    edicaoLauncher.launch(intent);
+                }
+                
+                mode.finish();
+                return true;
+                
+            } else if (id == R.id.action_excluir) {
+                // Excluir prompt selecionado
+                if (posicaoSelecionada >= 0) {
+                    Prompt promptRemovido = listaPrompts.remove(posicaoSelecionada);
+                    adapter.notifyDataSetChanged();
+                    verificarListaVazia();
+                    
+                    Toast.makeText(ListagemActivity.this,
+                        "🗑️ Prompt #" + promptRemovido.getId() + " excluído!",
+                        Toast.LENGTH_SHORT).show();
+                }
+                
+                mode.finish();
+                return true;
+            }
+            
+            return false;
+        }
+        
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            actionMode = null;
+            posicaoSelecionada = -1;
+            
+            // Limpar seleção visual
+            for (int i = 0; i < listViewPrompts.getChildCount(); i++) {
+                listViewPrompts.getChildAt(i).setSelected(false);
+            }
+        }
+    };
+}
