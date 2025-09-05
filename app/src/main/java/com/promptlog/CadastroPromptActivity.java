@@ -2,9 +2,9 @@ package com.promptlog;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -15,7 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Activity para cadastro de novos prompts
+ * Activity para cadastro e edição de prompts
+ * Suporta modo de criação e edição via Intent extras
  * Retorna dados via setResult para a ListagemActivity
  */
 public class CadastroPromptActivity extends AppCompatActivity {
@@ -27,21 +28,21 @@ public class CadastroPromptActivity extends AppCompatActivity {
     private CheckBox cbFavorito;
     private CheckBox cbPublico;
     private Spinner spCategoria;
-    private Button btnLimpar;
-    private Button btnSalvar;
-    private Button btnCancelar;
+    
+    // Variáveis para modo edição
+    private boolean modoEdicao = false;
+    private int promptId = -1;
+    private int promptPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_prompt);
         
-        // Configurar título da ActionBar
-        setTitle("📝 Novo Prompt");
-        
         // Habilitar botão de voltar na ActionBar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         
         // Inicializar componentes
@@ -50,18 +51,43 @@ public class CadastroPromptActivity extends AppCompatActivity {
         // Configurar Spinner
         configurarSpinner();
         
-        // Configurar listeners dos botões
-        configurarListeners();
+        // Verificar se está em modo de edição
+        verificarModoEdicao();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflar menu de cadastro
+        getMenuInflater().inflate(R.menu.menu_cadastro, menu);
+        return true;
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Lidar com clique no botão voltar da ActionBar
-        if (item.getItemId() == android.R.id.home) {
+        int id = item.getItemId();
+        
+        // Lidar com clique no botão Up
+        if (id == android.R.id.home) {
             setResult(RESULT_CANCELED);
             finish();
             return true;
         }
+        // Ação Salvar
+        else if (id == R.id.action_salvar) {
+            salvarPrompt();
+            return true;
+        }
+        // Ação Limpar (apenas em modo criação)
+        else if (id == R.id.action_limpar) {
+            if (!modoEdicao) {
+                limparFormulario();
+            } else {
+                Toast.makeText(this, "⚠️ Não é possível limpar em modo de edição", 
+                             Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+        
         return super.onOptionsItemSelected(item);
     }
     
@@ -79,11 +105,6 @@ public class CadastroPromptActivity extends AppCompatActivity {
         
         // Spinner
         spCategoria = findViewById(R.id.spCategoria);
-        
-        // Buttons
-        btnLimpar = findViewById(R.id.btnLimpar);
-        btnSalvar = findViewById(R.id.btnSalvar);
-        btnCancelar = findViewById(R.id.btnCancelar);
     }
     
     private void configurarSpinner() {
@@ -98,33 +119,66 @@ public class CadastroPromptActivity extends AppCompatActivity {
         spCategoria.setAdapter(adapter);
     }
     
-    private void configurarListeners() {
-        // Listener para botão Limpar
-        btnLimpar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                limparFormulario();
-            }
-        });
+    private void verificarModoEdicao() {
+        // Obter extras da Intent
+        Intent intent = getIntent();
         
-        // Listener para botão Salvar
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                salvarPrompt();
-            }
-        });
+        // Verificar se está em modo de edição
+        modoEdicao = intent.getBooleanExtra("modo_edicao", false);
         
-        // Listener para botão Cancelar (caso exista no layout)
-        if (btnCancelar != null) {
-            btnCancelar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Cancelar e voltar sem salvar
-                    setResult(RESULT_CANCELED);
-                    finish();
+        if (modoEdicao) {
+            // Alterar título da Activity
+            setTitle("✏️ Editar Prompt");
+            
+            // Recuperar dados do prompt para edição
+            promptId = intent.getIntExtra("prompt_id", -1);
+            promptPosition = intent.getIntExtra("prompt_position", -1);
+            
+            // Preencher campos com dados existentes
+            String texto = intent.getStringExtra("texto");
+            String categoria = intent.getStringExtra("categoria");
+            String prioridade = intent.getStringExtra("prioridade");
+            boolean favorito = intent.getBooleanExtra("favorito", false);
+            boolean publico = intent.getBooleanExtra("publico", false);
+            String tags = intent.getStringExtra("tags");
+            
+            // Preencher EditTexts
+            if (texto != null) {
+                etTextoPrompt.setText(texto);
+            }
+            if (tags != null) {
+                etTags.setText(tags);
+            }
+            
+            // Selecionar categoria no Spinner
+            if (categoria != null) {
+                ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spCategoria.getAdapter();
+                if (adapter != null) {
+                    int posicaoCategoria = adapter.getPosition(categoria);
+                    if (posicaoCategoria >= 0) {
+                        spCategoria.setSelection(posicaoCategoria);
+                    }
                 }
-            });
+            }
+            
+            // Selecionar prioridade no RadioGroup
+            if (prioridade != null) {
+                if (prioridade.equals("Alta")) {
+                    rgPrioridade.check(R.id.rbAlta);
+                } else if (prioridade.equals("Média")) {
+                    rgPrioridade.check(R.id.rbMedia);
+                } else if (prioridade.equals("Baixa")) {
+                    rgPrioridade.check(R.id.rbBaixa);
+                }
+            }
+            
+            // Marcar CheckBoxes
+            cbFavorito.setChecked(favorito);
+            cbPublico.setChecked(publico);
+            
+        } else {
+            // Modo criação - configurar título normal
+            setTitle("📝 Novo Prompt");
         }
     }
     
@@ -142,6 +196,9 @@ public class CadastroPromptActivity extends AppCompatActivity {
         
         // Resetar Spinner
         spCategoria.setSelection(0);
+        
+        // Focar no primeiro campo
+        etTextoPrompt.requestFocus();
         
         // Mostrar Toast
         Toast.makeText(this, "✨ Formulário limpo!", Toast.LENGTH_SHORT).show();
@@ -188,11 +245,21 @@ public class CadastroPromptActivity extends AppCompatActivity {
         resultIntent.putExtra("publico", isPublico);
         resultIntent.putExtra("tags", tags);
         
+        // Se estiver em modo de edição, incluir ID e posição
+        if (modoEdicao) {
+            resultIntent.putExtra("prompt_id", promptId);
+            resultIntent.putExtra("prompt_position", promptPosition);
+            resultIntent.putExtra("modo_edicao", true);
+            
+            // Mensagem específica para edição
+            Toast.makeText(this, "✅ Atualizando prompt...", Toast.LENGTH_SHORT).show();
+        } else {
+            // Mensagem para novo prompt
+            Toast.makeText(this, "✅ Salvando prompt...", Toast.LENGTH_SHORT).show();
+        }
+        
         // Definir resultado como OK e finalizar a Activity
         setResult(RESULT_OK, resultIntent);
-        
-        // Mostrar mensagem de sucesso rápida
-        Toast.makeText(this, "✅ Salvando prompt...", Toast.LENGTH_SHORT).show();
         
         // Fechar a Activity e retornar para a ListagemActivity
         finish();
