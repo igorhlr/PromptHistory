@@ -150,8 +150,8 @@ public class ListagemActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         
                         // Obter posição e ID originais
-                        int position = data.getIntExtra("position", -1);
-                        int id = data.getIntExtra("id", -1);
+                        int position = data.getIntExtra("prompt_position", -1);
+                        int id = data.getIntExtra("prompt_id", -1);
                         
                         if (position >= 0 && position < listaPrompts.size()) {
                             // Atualizar prompt existente
