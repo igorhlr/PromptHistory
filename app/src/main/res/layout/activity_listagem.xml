@@ -7,6 +7,8 @@
         android:id="@+id/listViewPrompts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="?attr/actionBarSize"
+        android:clipToPadding="false"
         android:visibility="gone"
         android:choiceMode="singleChoice"
         android:listSelector="@android:drawable/list_selector_background" />
