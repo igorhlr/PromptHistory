@@ -305,8 +305,8 @@ public class ListagemActivity extends AppCompatActivity {
                     
                     Intent intent = new Intent(ListagemActivity.this, CadastroPromptActivity.class);
                     intent.putExtra("modo_edicao", true);
-                    intent.putExtra("id", prompt.getId());
-                    intent.putExtra("position", posicaoSelecionada);
+                    intent.putExtra("prompt_id", prompt.getId());
+                    intent.putExtra("prompt_position", posicaoSelecionada);
                     intent.putExtra("texto", prompt.getTexto());
                     intent.putExtra("categoria", prompt.getCategoria());
                     intent.putExtra("prioridade", prompt.getPrioridade());
