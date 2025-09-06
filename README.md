@@ -1,7 +1,6 @@
 # 📝 PromptLog
 
 <div align="center">
-  <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="PromptLog Logo" width="120">
   
   **Sistema de Gerenciamento de Prompts para Android**
   
