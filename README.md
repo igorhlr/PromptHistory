@@ -238,10 +238,6 @@ Contribuições são bem-vindas! Para contribuir:
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 👥 Autores
-
-- **[Seu Nome]** - *Desenvolvimento* - [GitHub](https://github.com/seu-usuario)
-
 ## 🙏 Agradecimentos
 
 - Professor(a) da disciplina de Desenvolvimento Mobile
@@ -255,5 +251,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
   
   **Entrega 4 - Menus e Navegação Profissional**
   
-  📚 Curso de [Seu Curso] | 🏫 [Sua Instituição]
+  📚 Curso de  ☕️[JAVA](https://www.java.com/pt-BR/) | 🏫 [[UTFPR](https://www.utfpr.edu.br)]
 </div>
