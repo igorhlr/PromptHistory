@@ -250,5 +250,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
   
   **Entrega 4 - Menus e Navegação Profissional**
   
-  📚 Curso de  ☕️[JAVA](https://www.java.com/pt-BR/) | 🏫 [UTFPR](https://www.utfpr.edu.br)]
+  📚 Curso de  ☕️[JAVA](https://www.java.com/pt-BR/) | 🏫 [UTFPR](https://www.utfpr.edu.br)
 </div>
