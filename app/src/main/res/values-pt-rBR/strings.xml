@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">PromptLog</string>
+    
+    <!-- Títulos das Activities -->
+    <string name="title_listing">Lista de Prompts</string>
+    <string name="title_add_prompt">Novo Prompt</string>
+    <string name="title_edit_prompt">Editar Prompt</string>
+    <string name="title_about">Sobre</string>
+    
+    <!-- Itens de Menu -->
+    <string name="menu_add">Adicionar</string>
+    <string name="menu_save">Salvar</string>
+    <string name="menu_clear">Limpar</string>
+    <string name="menu_edit">Editar</string>
+    <string name="menu_delete">Excluir</string>
+    <string name="menu_about">Sobre</string>
+    <string name="menu_settings">Configurações</string>
+    
+    <!-- Rótulos dos Campos -->
+    <string name="label_text">Texto</string>
+    <string name="label_category">Categoria</string>
+    <string name="label_priority">Prioridade</string>
+    <string name="label_favorite">Favorito</string>
+    <string name="label_tags">Tags</string>
+    
+    <!-- Categorias -->
+    <string name="category_work">Trabalho</string>
+    <string name="category_personal">Pessoal</string>
+    <string name="category_study">Estudo</string>
+    <string name="category_other">Outros</string>
+    
+    <!-- Prioridades -->
+    <string name="priority_high">Alta</string>
+    <string name="priority_medium">Média</string>
+    <string name="priority_low">Baixa</string>
+    
+    <!-- Mensagens -->
+    <string name="msg_prompt_saved">Prompt salvo com sucesso</string>
+    <string name="msg_prompt_updated">Prompt atualizado com sucesso</string>
+    <string name="msg_prompt_deleted">Prompt excluído</string>
+    <string name="msg_fields_cleared">Campos limpos</string>
+    <string name="msg_empty_list">Nenhum prompt cadastrado</string>
+    <string name="msg_settings_restored">Configurações restauradas para o padrão</string>
+    
+    <!-- Validação -->
+    <string name="error_empty_text">Por favor, insira o texto do prompt</string>
+    <string name="error_select_category">Por favor, selecione uma categoria</string>
+    <string name="error_select_priority">Por favor, selecione uma prioridade</string>
+    
+    <!-- Configurações -->
+    <string name="settings_sort_order">Ordem de Classificação</string>
+    <string name="settings_ascending">Crescente (A-Z)</string>
+    <string name="settings_descending">Decrescente (Z-A)</string>
+    <string name="settings_restore_defaults">Restaurar Padrões</string>
+</resources>

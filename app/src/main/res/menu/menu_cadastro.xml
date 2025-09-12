@@ -4,13 +4,13 @@
     
     <item
         android:id="@+id/action_salvar"
-        android:title="Salvar"
+        android:title="@string/menu_save"
         android:icon="@drawable/ic_save_24"
         app:showAsAction="ifRoom" />
     
     <item
         android:id="@+id/action_limpar"
-        android:title="Limpar"
+        android:title="@string/menu_clear"
         android:icon="@drawable/ic_clear_24"
         app:showAsAction="ifRoom" />
     

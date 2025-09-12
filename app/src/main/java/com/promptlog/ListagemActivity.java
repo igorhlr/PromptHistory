@@ -1,6 +1,8 @@
 package com.promptlog;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -23,6 +25,15 @@ import com.promptlog.model.Prompt;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
+
+import com.promptlog.adapter.PromptAdapter;
+import com.promptlog.model.Prompt;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -30,8 +41,16 @@ import java.util.Locale;
  * Activity principal da Entrega 4
  * Exibe lista de prompts cadastrados dinamicamente
  * Implementa menu de opções e menu de ação contextual (CAB)
+ * Entrega 5 - Implementação de SharedPreferences e Internacionalização
  */
 public class ListagemActivity extends AppCompatActivity {
+    
+    // SharedPreferences - Entrega 5
+    public static final String ARQUIVO_PREFERENCIAS = "com.promptlog.PREFERENCIAS";
+    public static final String KEY_ORDENACAO_ASCENDENTE = "ORDENACAO_ASCENDENTE";
+    public static final boolean PADRAO_ORDENACAO_ASCENDENTE = true;
+    private boolean ordenacaoAscendente = PADRAO_ORDENACAO_ASCENDENTE;
+    private MenuItem menuItemOrdenacao;
     
     // Componentes da UI
     private ListView listViewPrompts;

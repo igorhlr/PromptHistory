@@ -2,11 +2,11 @@
 <resources>
     <!-- Arrays para o spinner de categorias na tela de cadastro -->
     <string-array name="categorias_array">
-        <item>Programação</item>
-        <item>Escrita</item>
-        <item>Análise</item>
-        <item>Criativo</item>
-        <item>Outros</item>
+        <item>Work</item>
+        <item>Personal</item>
+        <item>Study</item>
+        <item>Creative</item>
+        <item>Other</item>
     </string-array>
     
     <!-- Arrays para dados mockados da Entrega 2 -->

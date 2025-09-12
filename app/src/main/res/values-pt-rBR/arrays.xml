@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Arrays para o spinner de categorias na tela de cadastro -->
+    <string-array name="categorias_array">
+        <item>Trabalho</item>
+        <item>Pessoal</item>
+        <item>Estudo</item>
+        <item>Criativo</item>
+        <item>Outros</item>
+    </string-array>
+</resources>

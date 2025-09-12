@@ -1,10 +1,12 @@
 package com.promptlog.model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Classe de modelo para representar um Prompt
  * Entrega 2 - PromptLog
+ * Entrega 5 - Adicionados Comparators para ordenação
  */
 public class Prompt implements Serializable {
     // Atributos obrigatórios (mínimo 4, usando 7 para completude)
@@ -96,4 +98,43 @@ public class Prompt implements Serializable {
                (texto != null && texto.length() > 30 ? 
                 texto.substring(0, 30) + "..." : texto);
     }
+    
+    // Comparators para ordenação - Entrega 5
+    /**
+     * Comparator para ordenação crescente (A-Z) baseado no texto do prompt
+     */
+    public static Comparator<Prompt> ordenacaoCrescente = new Comparator<Prompt>() {
+        @Override
+        public int compare(Prompt p1, Prompt p2) {
+            if (p1.getTexto() == null && p2.getTexto() == null) {
+                return 0;
+            }
+            if (p1.getTexto() == null) {
+                return 1;
+            }
+            if (p2.getTexto() == null) {
+                return -1;
+            }
+            return p1.getTexto().compareToIgnoreCase(p2.getTexto());
+        }
+    };
+    
+    /**
+     * Comparator para ordenação decrescente (Z-A) baseado no texto do prompt
+     */
+    public static Comparator<Prompt> ordenacaoDecrescente = new Comparator<Prompt>() {
+        @Override
+        public int compare(Prompt p1, Prompt p2) {
+            if (p1.getTexto() == null && p2.getTexto() == null) {
+                return 0;
+            }
+            if (p1.getTexto() == null) {
+                return -1;
+            }
+            if (p2.getTexto() == null) {
+                return 1;
+            }
+            return p2.getTexto().compareToIgnoreCase(p1.getTexto());
+        }
+    };
 }
