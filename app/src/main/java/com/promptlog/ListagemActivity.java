@@ -74,7 +74,7 @@ public class ListagemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listagem);
         
         // Título da activity
-        setTitle("📝 PromptLog - Meus Prompts");
+        setTitle(getString(R.string.title_listing));
         
         // Inicializar componentes
         inicializarComponentes();
