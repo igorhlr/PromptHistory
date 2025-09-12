@@ -356,6 +356,21 @@ public class ListagemActivity extends AppCompatActivity {
     }
     
     /**
+     * Prepara o menu de opções antes de ser exibido
+     * Entrega 5 - Atualiza ícone de ordenação
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Encontrar item de ordenação
+        menuItemOrdenacao = menu.findItem(R.id.action_ordenacao);
+        
+        // Atualizar ícone baseado na preferência atual
+        atualizarIconeOrdenacao();
+        
+        return super.onPrepareOptionsMenu(menu);
+    }
+    
+    /**
      * Trata seleção de item do menu de opções
      */
     @Override
@@ -371,6 +386,30 @@ public class ListagemActivity extends AppCompatActivity {
             // Abrir tela sobre
             Intent intent = new Intent(ListagemActivity.this, SobreActivity.class);
             startActivity(intent);
+            return true;
+        } else if (id == R.id.action_ordenacao) {
+            // Toggle ordenação - Entrega 5
+            ordenacaoAscendente = !ordenacaoAscendente;
+            
+            // Salvar preferência
+            salvarPreferenciaOrdenacao(ordenacaoAscendente);
+            
+            // Atualizar ícone
+            atualizarIconeOrdenacao();
+            
+            // Reordenar lista
+            ordenarLista();
+            
+            // Mostrar feedback
+            String mensagem = ordenacaoAscendente ? 
+                getString(R.string.settings_ascending) : 
+                getString(R.string.settings_descending);
+            Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+            
+            return true;
+        } else if (id == R.id.action_restaurar) {
+            // Restaurar configurações padrão - Entrega 5
+            restaurarPadroes();
             return true;
         }
         
