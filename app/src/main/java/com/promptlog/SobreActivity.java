@@ -16,7 +16,7 @@ public class SobreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sobre);
         
         // Configurar título da ActionBar
-        setTitle("Sobre o App");
+        setTitle(getString(R.string.title_about));
         
         // Habilitar botão de voltar na ActionBar
         if (getSupportActionBar() != null) {

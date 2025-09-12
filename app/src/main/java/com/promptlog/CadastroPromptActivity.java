@@ -82,7 +82,7 @@ public class CadastroPromptActivity extends AppCompatActivity {
             if (!modoEdicao) {
                 limparFormulario();
             } else {
-                Toast.makeText(this, "⚠️ Não é possível limpar em modo de edição", 
+                Toast.makeText(this, getString(R.string.msg_cannot_clear_edit_mode), 
                              Toast.LENGTH_SHORT).show();
             }
             return true;
@@ -128,7 +128,7 @@ public class CadastroPromptActivity extends AppCompatActivity {
         
         if (modoEdicao) {
             // Alterar título da Activity
-            setTitle("✏️ Editar Prompt");
+            setTitle(getString(R.string.title_edit_prompt));
             
             // Recuperar dados do prompt para edição
             promptId = intent.getIntExtra("prompt_id", -1);
@@ -163,11 +163,11 @@ public class CadastroPromptActivity extends AppCompatActivity {
             
             // Selecionar prioridade no RadioGroup
             if (prioridade != null) {
-                if (prioridade.equals("Alta")) {
+                if (prioridade.equals(getString(R.string.priority_high))) {
                     rgPrioridade.check(R.id.rbAlta);
-                } else if (prioridade.equals("Média")) {
+                } else if (prioridade.equals(getString(R.string.priority_medium))) {
                     rgPrioridade.check(R.id.rbMedia);
-                } else if (prioridade.equals("Baixa")) {
+                } else if (prioridade.equals(getString(R.string.priority_low))) {
                     rgPrioridade.check(R.id.rbBaixa);
                 }
             }
@@ -178,7 +178,7 @@ public class CadastroPromptActivity extends AppCompatActivity {
             
         } else {
             // Modo criação - configurar título normal
-            setTitle("📝 Novo Prompt");
+            setTitle(getString(R.string.title_add_prompt));
         }
     }
     
@@ -201,7 +201,7 @@ public class CadastroPromptActivity extends AppCompatActivity {
         etTextoPrompt.requestFocus();
         
         // Mostrar Toast
-        Toast.makeText(this, "✨ Formulário limpo!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.msg_fields_cleared), Toast.LENGTH_SHORT).show();
     }
     
     private void salvarPrompt() {
@@ -211,7 +211,7 @@ public class CadastroPromptActivity extends AppCompatActivity {
         
         // Validar campos obrigatórios
         if (textoPrompt.isEmpty()) {
-            Toast.makeText(this, "⚠️ Por favor, preencha o texto do prompt", 
+            Toast.makeText(this, getString(R.string.error_empty_text), 
                          Toast.LENGTH_SHORT).show();
             etTextoPrompt.requestFocus();
             return;
@@ -220,7 +220,7 @@ public class CadastroPromptActivity extends AppCompatActivity {
         // Validar RadioGroup
         int prioridadeSelecionada = rgPrioridade.getCheckedRadioButtonId();
         if (prioridadeSelecionada == -1) {
-            Toast.makeText(this, "⚠️ Por favor, selecione uma prioridade", 
+            Toast.makeText(this, getString(R.string.error_select_priority), 
                          Toast.LENGTH_SHORT).show();
             return;
         }
@@ -252,10 +252,10 @@ public class CadastroPromptActivity extends AppCompatActivity {
             resultIntent.putExtra("modo_edicao", true);
             
             // Mensagem específica para edição
-            Toast.makeText(this, "✅ Atualizando prompt...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.msg_updating_prompt), Toast.LENGTH_SHORT).show();
         } else {
             // Mensagem para novo prompt
-            Toast.makeText(this, "✅ Salvando prompt...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.msg_saving_prompt), Toast.LENGTH_SHORT).show();
         }
         
         // Definir resultado como OK e finalizar a Activity

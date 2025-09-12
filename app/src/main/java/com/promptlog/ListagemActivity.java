@@ -226,9 +226,7 @@ public class ListagemActivity extends AppCompatActivity {
                 
                 // Mensagem identificando exatamente qual item foi clicado
                 String mensagem = String.format(
-                    "📌 VOCÊ CLICOU NO ITEM %d:\n\n" +
-                    "\"%s\"\n\n" +
-                    "📁 %s | ⚡ %s | 📅 %s",
+                    getString(R.string.msg_item_clicked),
                     prompt.getId(),
                     textoResumido,
                     prompt.getCategoria(),
@@ -433,7 +431,7 @@ public class ListagemActivity extends AppCompatActivity {
             inflater.inflate(R.menu.menu_contextual, menu);
             
             // Atualizar título
-            mode.setTitle("Selecione a ação");
+            mode.setTitle(getString(R.string.action_select));
             
             return true;
         }

@@ -40,9 +40,16 @@
     <string name="msg_prompt_saved">Prompt saved successfully</string>
     <string name="msg_prompt_updated">Prompt updated successfully</string>
     <string name="msg_prompt_deleted">Prompt deleted</string>
-    <string name="msg_fields_cleared">Fields cleared</string>
+    <string name="msg_fields_cleared">Form cleared!</string>
     <string name="msg_empty_list">No prompts registered</string>
     <string name="msg_settings_restored">Settings restored to default</string>
+    <string name="msg_item_clicked">📌 YOU CLICKED ON ITEM %d:\n\n\"%s\"\n\n📁 %s | ⚡ %s | 📅 %s</string>
+    <string name="msg_cannot_clear_edit_mode">Cannot clear in edit mode</string>
+    <string name="msg_saving_prompt">Saving prompt...</string>
+    <string name="msg_updating_prompt">Updating prompt...</string>
+    
+    <!-- Actions -->
+    <string name="action_select">Select action</string>
     
     <!-- Validation -->
     <string name="error_empty_text">Please enter the prompt text</string>
