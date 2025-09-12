@@ -152,6 +152,9 @@ public class ListagemActivity extends AppCompatActivity {
                         // Adicionar à lista
                         listaPrompts.add(novoPrompt);
                         
+                        // Aplicar ordenação - Entrega 5
+                        ordenarLista();
+                        
                         // Notificar adapter da mudança
                         adapter.notifyDataSetChanged();
                         
@@ -160,7 +163,7 @@ public class ListagemActivity extends AppCompatActivity {
                         
                         // Mostrar confirmação
                         Toast.makeText(ListagemActivity.this,
-                            "✅ Prompt adicionado com sucesso!",
+                            getString(R.string.msg_prompt_saved),
                             Toast.LENGTH_SHORT).show();
                     }
                 }
