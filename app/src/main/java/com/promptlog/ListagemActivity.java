@@ -270,6 +270,83 @@ public class ListagemActivity extends AppCompatActivity {
     }
     
     /**
+     * Lê as preferências salvas do usuário
+     * Entrega 5 - SharedPreferences
+     */
+    private void lerPreferencias() {
+        SharedPreferences prefs = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        ordenacaoAscendente = prefs.getBoolean(KEY_ORDENACAO_ASCENDENTE, PADRAO_ORDENACAO_ASCENDENTE);
+    }
+    
+    /**
+     * Salva a preferência de ordenação do usuário
+     * Entrega 5 - SharedPreferences
+     */
+    private void salvarPreferenciaOrdenacao(boolean ascendente) {
+        SharedPreferences prefs = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(KEY_ORDENACAO_ASCENDENTE, ascendente);
+        editor.apply(); // Usar apply() para melhor performance
+        
+        // Atualizar variável de estado
+        ordenacaoAscendente = ascendente;
+    }
+    
+    /**
+     * Restaura as configurações padrão
+     * Entrega 5 - SharedPreferences
+     */
+    private void restaurarPadroes() {
+        SharedPreferences prefs = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear(); // Limpar todas as preferências
+        editor.apply();
+        
+        // Restaurar valores padrão
+        ordenacaoAscendente = PADRAO_ORDENACAO_ASCENDENTE;
+        
+        // Atualizar ícone e reordenar lista
+        atualizarIconeOrdenacao();
+        ordenarLista();
+        
+        // Mostrar confirmação
+        Toast.makeText(this, getString(R.string.msg_settings_restored), Toast.LENGTH_SHORT).show();
+    }
+    
+    /**
+     * Ordena a lista de prompts conforme preferência do usuário
+     * Entrega 5 - Ordenação persistente
+     */
+    private void ordenarLista() {
+        if (listaPrompts != null && !listaPrompts.isEmpty()) {
+            if (ordenacaoAscendente) {
+                Collections.sort(listaPrompts, Prompt.ordenacaoCrescente);
+            } else {
+                Collections.sort(listaPrompts, Prompt.ordenacaoDecrescente);
+            }
+            
+            // Notificar adapter da mudança
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
+    
+    /**
+     * Atualiza o ícone do menu de ordenação
+     * Entrega 5 - Ícone dinâmico
+     */
+    private void atualizarIconeOrdenacao() {
+        if (menuItemOrdenacao != null) {
+            if (ordenacaoAscendente) {
+                menuItemOrdenacao.setIcon(R.drawable.ic_sort_ascending);
+            } else {
+                menuItemOrdenacao.setIcon(R.drawable.ic_sort_descending);
+            }
+        }
+    }
+    
+    /**
      * Cria o menu de opções da Activity
      */
     @Override
