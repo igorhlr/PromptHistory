@@ -192,11 +192,14 @@ public class ListagemActivity extends AppCompatActivity {
                             promptExistente.setFavorito(data.getBooleanExtra("favorito", false));
                             promptExistente.setTags(data.getStringExtra("tags"));
                             
+                            // Aplicar ordenação caso o texto tenha mudado - Entrega 5
+                            ordenarLista();
+                            
                             // Notificar adapter
                             adapter.notifyDataSetChanged();
                             
                             Toast.makeText(ListagemActivity.this,
-                                "✅ Prompt editado com sucesso!",
+                                getString(R.string.msg_prompt_updated),
                                 Toast.LENGTH_SHORT).show();
                         }
                     }
