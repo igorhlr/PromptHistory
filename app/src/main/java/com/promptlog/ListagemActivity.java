@@ -476,7 +476,7 @@ public class ListagemActivity extends AppCompatActivity {
                     verificarListaVazia();
                     
                     Toast.makeText(ListagemActivity.this,
-                        "🗑️ Prompt #" + promptRemovido.getId() + " excluído!",
+                        getString(R.string.msg_prompt_deleted),
                         Toast.LENGTH_SHORT).show();
                 }
                 
