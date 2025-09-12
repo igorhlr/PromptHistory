@@ -104,10 +104,15 @@ public class PromptAdapter extends ArrayAdapter<Prompt> {
             String prioridade = prompt.getPrioridade();
             holder.tvPrioridade.setText("⚡ " + prioridade);
             
-            // Define cor baseada na prioridade
-            if ("Alta".equals(prioridade)) {
+            // Define cor baseada na prioridade usando recursos para comparação
+            // Obtém os valores localizados das prioridades
+            String highPriority = context.getString(R.string.priority_high);
+            String mediumPriority = context.getString(R.string.priority_medium);
+            String lowPriority = context.getString(R.string.priority_low);
+            
+            if (highPriority.equalsIgnoreCase(prioridade) || "High".equalsIgnoreCase(prioridade) || "Alta".equalsIgnoreCase(prioridade)) {
                 holder.tvPrioridade.setTextColor(Color.parseColor("#D32F2F")); // Vermelho
-            } else if ("Média".equals(prioridade)) {
+            } else if (mediumPriority.equalsIgnoreCase(prioridade) || "Medium".equalsIgnoreCase(prioridade) || "Média".equalsIgnoreCase(prioridade)) {
                 holder.tvPrioridade.setTextColor(Color.parseColor("#F57C00")); // Laranja
             } else {
                 holder.tvPrioridade.setTextColor(Color.parseColor("#388E3C")); // Verde

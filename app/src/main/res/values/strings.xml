@@ -68,6 +68,17 @@
     <string name="settings_descending">Descending (Z-A)</string>
     <string name="settings_restore_defaults">Restore Defaults</string>
     
+    <!-- About Screen -->
+    <string name="about_university">Federal University of Technology - Paraná</string>
+    <string name="about_developer_title">Developer</string>
+    <string name="about_developer_name">👤 Igor Henrique Lima Rozalem</string>
+    <string name="about_course">🎓 Course: Java Specialization - Android Module</string>
+    <string name="about_email">📧 E-mail: igorrozalem@utfpr.edu.br</string>
+    <string name="about_app_title">About PromptLog</string>
+    <string name="about_app_description">📝 PromptLog - Personal Offline Application\n\nPromptLog is a personal and offline application created to record and consult prompts used by users in interactions with AI language models (such as ChatGPT, Claude, etc.).\n\n🎯 Main Objective:\nAllow users to save their most useful prompts and respective responses, even when away from the computer and without internet access.\n\n✨ Features:\n• Registration of custom prompts\n• Complete offline storage\n• Categorization by themes\n• Priority system\n• Favorite marking\n• Organization with tags\n• Intuitive and friendly interface\n• Quick access to saved prompts\n\nVersion: 1.0.0\nDeveloped as an academic project for the Android Frameworks course</string>
+    <string name="about_copyright">© 2025 UTFPR - All rights reserved</string>
+    <string name="about_logo_description">UTFPR Logo</string>
+    
     <!-- Legacy strings (kept for compatibility) -->
     <string name="titulo_listagem">📝 My Prompts</string>
     <string name="subtitulo_listagem">Tap a prompt to see details</string>

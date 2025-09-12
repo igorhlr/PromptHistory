@@ -54,16 +54,16 @@
     
     <!-- Prioridades dos prompts -->
     <string-array name="prompt_prioridades">
-        <item>Alta</item>
-        <item>Baixa</item>
-        <item>Alta</item>
-        <item>Média</item>
-        <item>Baixa</item>
-        <item>Média</item>
-        <item>Alta</item>
-        <item>Alta</item>
-        <item>Média</item>
-        <item>Baixa</item>
+        <item>High</item>
+        <item>Low</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
     </string-array>
     
     <!-- Favoritos (true/false como string) -->

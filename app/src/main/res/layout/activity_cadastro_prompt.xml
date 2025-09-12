@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Texto do Prompt"
+            android:text="@string/label_text"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -25,7 +25,7 @@
             android:id="@+id/etTextoPrompt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite o texto do seu prompt..."
+            android:hint="@string/hint_prompt_text"
             android:inputType="textMultiLine"
             android:minLines="3"
             android:gravity="top|start"
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tags/Palavras-chave"
+            android:text="@string/label_tags"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -43,7 +43,7 @@
             android:id="@+id/etTags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ex: java, android, ui"
+            android:hint="@string/hint_tags"
             android:inputType="text"
             android:layout_marginBottom="16dp" />
 
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Categoria"
+            android:text="@string/label_category"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -66,7 +66,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prioridade"
+            android:text="@string/label_priority"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -82,21 +82,21 @@
                 android:id="@+id/rbAlta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alta"
+                android:text="@string/priority_high"
                 android:layout_weight="1" />
 
             <RadioButton
                 android:id="@+id/rbMedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Média"
+                android:text="@string/priority_medium"
                 android:layout_weight="1" />
 
             <RadioButton
                 android:id="@+id/rbBaixa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Baixa"
+                android:text="@string/priority_low"
                 android:layout_weight="1" />
 
         </RadioGroup>
@@ -105,7 +105,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Opções"
+            android:text="@string/label_options"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -114,14 +114,14 @@
             android:id="@+id/cbFavorito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favorito"
+            android:text="@string/label_favorite"
             android:layout_marginBottom="8dp" />
 
         <CheckBox
             android:id="@+id/cbPublico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Público"
+            android:text="@string/label_public"
             android:layout_marginBottom="20dp" />
 
     </LinearLayout>

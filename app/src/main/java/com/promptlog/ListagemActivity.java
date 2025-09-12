@@ -85,8 +85,11 @@ public class ListagemActivity extends AppCompatActivity {
         // Configurar launcher para resultado
         configurarLauncher();
         
-        // Inicializar lista vazia (não carrega mais de resources)
+        // Inicializar lista vazia
         listaPrompts = new ArrayList<>();
+        
+        // Carregar dados mockados para demonstração da Entrega 5
+        carregarDadosMockados();
         
         // Configurar adapter customizado
         adapter = new PromptAdapter(this, listaPrompts);
@@ -98,10 +101,8 @@ public class ListagemActivity extends AppCompatActivity {
         // Verificar se lista está vazia
         verificarListaVazia();
         
-        // Aplicar ordenação inicial se houver itens
-        if (!listaPrompts.isEmpty()) {
-            ordenarLista();
-        }
+        // Aplicar ordenação inicial - Entrega 5
+        ordenarLista();
     }
     
     /**
@@ -110,6 +111,34 @@ public class ListagemActivity extends AppCompatActivity {
     private void inicializarComponentes() {
         listViewPrompts = findViewById(R.id.listViewPrompts);
         tvListaVazia = findViewById(R.id.tvListaVazia);
+    }
+    
+    /**
+     * Carrega dados mockados dos arrays de recursos
+     * Entrega 5 - Necessário para demonstrar persistência de ordenação
+     */
+    private void carregarDadosMockados() {
+        // Carregar arrays de recursos
+        String[] textos = getResources().getStringArray(R.array.prompt_textos);
+        String[] categorias = getResources().getStringArray(R.array.prompt_categorias);
+        String[] datas = getResources().getStringArray(R.array.prompt_datas);
+        String[] prioridades = getResources().getStringArray(R.array.prompt_prioridades);
+        String[] favoritos = getResources().getStringArray(R.array.prompt_favoritos);
+        String[] tags = getResources().getStringArray(R.array.prompt_tags);
+        
+        // Criar objetos Prompt a partir dos arrays
+        for (int i = 0; i < textos.length && i < categorias.length; i++) {
+            Prompt prompt = new Prompt(
+                i + 1,  // ID
+                textos[i],
+                categorias[i],
+                datas[i],
+                prioridades[i],
+                Boolean.parseBoolean(favoritos[i]),
+                tags[i]
+            );
+            listaPrompts.add(prompt);
+        }
     }
     
     /**

@@ -17,7 +17,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
-            android:contentDescription="Logo UTFPR"
+            android:contentDescription="@string/about_logo_description"
             android:src="@drawable/logo_utfpr"
             android:scaleType="centerInside" />
 
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Universidade Tecnológica Federal do Paraná"
+            android:text="@string/about_university"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Desenvolvedor"
+            android:text="@string/about_developer_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/purple_700"
@@ -54,7 +54,7 @@
             android:id="@+id/tvNomeAluno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="👤 Igor Henrique Lima Rozalem"
+            android:text="@string/about_developer_name"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -63,7 +63,7 @@
             android:id="@+id/tvCurso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🎓 Curso: Especialização em JAVA - Módulo Android"
+            android:text="@string/about_course"
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
@@ -72,7 +72,7 @@
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📧 E-mail: igorrozalem@utfpr.edu.br"
+            android:text="@string/about_email"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:autoLink="email" />
@@ -88,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sobre o PromptLog"
+            android:text="@string/about_app_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/purple_700"
@@ -98,7 +98,7 @@
             android:id="@+id/tvDescricaoApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📝 PromptLog - Aplicativo Pessoal Offline\n\nO PromptLog é um aplicativo pessoal e offline criado para registrar e consultar prompts utilizados por usuários em interações com modelos de linguagem baseados em inteligência artificial (como ChatGPT, Claude, etc.).\n\n🎯 Objetivo Principal:\nPermitir que o usuário salve seus prompts mais úteis e as respectivas respostas, mesmo quando estiver longe do computador e sem acesso à internet.\n\n✨ Funcionalidades:\n• Cadastro de prompts personalizados\n• Armazenamento offline completo\n• Categorização por temas\n• Sistema de prioridades\n• Marcação de favoritos\n• Organização com tags\n• Interface intuitiva e amigável\n• Acesso rápido aos prompts salvos\n\nVersão: 1.0.0\nDesenvolvido como projeto acadêmico para a disciplina de Frameworks Android"
+            android:text="@string/about_app_description"
             android:textSize="14sp"
             android:lineSpacingMultiplier="1.2"
             android:padding="8dp"
@@ -109,7 +109,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="© 2025 UTFPR - Todos os direitos reservados"
+            android:text="@string/about_copyright"
             android:textSize="12sp"
             android:textColor="#666666"
             android:layout_marginTop="24dp"
