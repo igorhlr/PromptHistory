@@ -61,4 +61,18 @@
     <string name="settings_ascending">Crescente (A-Z)</string>
     <string name="settings_descending">Decrescente (Z-A)</string>
     <string name="settings_restore_defaults">Restaurar Padrões</string>
+    
+    <!-- Strings legadas (mantidas para compatibilidade) -->
+    <string name="titulo_listagem">📝 Meus Prompts</string>
+    <string name="subtitulo_listagem">Toque em um prompt para ver detalhes</string>
+    <string name="categoria_programacao">Programação</string>
+    <string name="categoria_escrita">Escrita Criativa</string>
+    <string name="categoria_analise">Análise de Dados</string>
+    <string name="categoria_traducao">Tradução</string>
+    <string name="categoria_educacao">Educação</string>
+    <string name="prioridade_alta">Alta</string>
+    <string name="prioridade_media">Média</string>
+    <string name="prioridade_baixa">Baixa</string>
+    <string name="msg_prompt_clicado">Você clicou no item</string>
+    <string name="msg_sem_tags">Sem tags definidas</string>
 </resources>
