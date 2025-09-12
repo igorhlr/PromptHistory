@@ -24,6 +24,12 @@
     <string name="label_priority">Prioridade</string>
     <string name="label_favorite">Favorito</string>
     <string name="label_tags">Tags</string>
+    <string name="label_options">Opções</string>
+    <string name="label_public">Público</string>
+    
+    <!-- Dicas -->
+    <string name="hint_prompt_text">Digite o texto do seu prompt...</string>
+    <string name="hint_tags">Ex: java, android, ui</string>
     
     <!-- Categorias -->
     <string name="category_work">Trabalho</string>
