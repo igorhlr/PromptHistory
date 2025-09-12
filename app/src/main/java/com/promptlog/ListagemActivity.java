@@ -79,6 +79,9 @@ public class ListagemActivity extends AppCompatActivity {
         // Inicializar componentes
         inicializarComponentes();
         
+        // Ler preferências do usuário - Entrega 5
+        lerPreferencias();
+        
         // Configurar launcher para resultado
         configurarLauncher();
         
@@ -94,6 +97,11 @@ public class ListagemActivity extends AppCompatActivity {
         
         // Verificar se lista está vazia
         verificarListaVazia();
+        
+        // Aplicar ordenação inicial se houver itens
+        if (!listaPrompts.isEmpty()) {
+            ordenarLista();
+        }
     }
     
     /**
